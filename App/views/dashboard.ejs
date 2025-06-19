@@ -4,23 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Uploader</title>
+    <link rel="stylesheet" href="/index.css">
 </head>
 <body>
     <div id="header">
-        <h2>Welcome, username</h2>
-        <a>New Folder</a>
-        <a>Upload File</a>
-        <a href="/logout">Logout</a>
+        <h2>Welcome, <%= user.username %></h2>
+        <nav>
+            <ul>
+                <li><a href="/newFolder">New Folder</a></li>
+                <li><a href="/uploadFile">Upload File</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
     </div>
 
     <div id="folders">
-        <h3>Folders</h3>
+        <h2><img src="/fileIcon.png" id="icon">Folders</h2>
+        <ul>
+
+        </ul>
 
     </div>
 
     <div id="files">
-        <h3>Files</h3>
-        
-    </div>
+        <h2><img src="/fileIcon.png" id="icon">Files</h2>
+      
+        <% if (files.length === 0) { %>
+          <p>No files uploaded yet.</p>
+        <% } else { %>
+          <ul>
+            <% files.forEach(file => { %>
+              <li>
+                <strong><%= file.name %></strong>
+                — <%= (file.size / 1024).toFixed(1) %> KB
+                — Uploaded at <%= new Date(file.createdAt).toLocaleString() %>
+                — <a href="/files/<%= file.id %>/download">Download</a>
+              </li>
+            <% }) %>
+          </ul>
+        <% } %>
+      </div>
 </body>
 </html>
