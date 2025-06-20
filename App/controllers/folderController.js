@@ -5,7 +5,7 @@ async function handleCreateFolder(req, res){
     const userId = req.user.id;
     try {
         const folder = await createFolder(name, userId);
-        return res.status(201).json(folder);
+        return res.status(201).redirect('/dashboard');
     }
     catch(error){
         console.error(error);

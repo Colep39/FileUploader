@@ -20,9 +20,18 @@
 
     <div id="folders">
         <h2><img src="/fileIcon.png" id="icon">Folders</h2>
-        <ul>
 
-        </ul>
+        <% if (folders.length === 0) { %>
+          <p>No folders created yet.</p>
+        <% } else { %>
+          <ul>
+            <% folders.forEach(folder => { %>
+              <li>
+                <strong><%= folder.name %></strong>
+              </li>
+            <% }) %>
+          </ul>
+        <% } %>
 
     </div>
 
@@ -43,6 +52,6 @@
             <% }) %>
           </ul>
         <% } %>
-      </div>
+    </div>
 </body>
 </html>

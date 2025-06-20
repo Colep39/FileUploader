@@ -7,10 +7,13 @@ const isAuthenticated = require('../middleware/isAuthenticated');
 const fileController = require('../controllers/fileController');
 const folderController = require('../controllers/folderController');
 const userController = require('../controllers/userController');
+const dashboardController = require('../controllers/dashboardController');
 
-router.get('/dashboard', isAuthenticated, fileController.handleGetFilesByUser, folderController.handleGetFoldersByUser, (req, res) => {
-    res.render('dashboard', {user: req.user});
-})
+//router.get('/dashboard', isAuthenticated, fileController.handleGetFilesByUser, folderController.handleGetFoldersByUser, (req, res) => {
+ //   res.render('dashboard', {user: req.user});
+//})
+
+router.get('/dashboard', isAuthenticated, dashboardController.handleDashboard);
 
 router.post('/register', userController.registerUser);
 router.post('/login',
